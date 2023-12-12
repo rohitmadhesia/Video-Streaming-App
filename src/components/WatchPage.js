@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { closeMenu } from "../utilites/appSlice"
 import { useSearchParams } from "react-router-dom"
 import { SUBSCRIPTION_API } from "../utilites/Constant"
+import LiveChat from "./LiveChat"
 
 const WatchPage = () => {
 
@@ -12,8 +13,7 @@ const WatchPage = () => {
     const movies = useSelector((store) => store.app.moviesData)
     console.log(movies)
     
-    const{snippet} = movies[0]
-    const {title} = snippet
+    
 
     useEffect(() => {
        dispatch(closeMenu())
@@ -32,9 +32,14 @@ const WatchPage = () => {
     //   }
 
     return (
-        <div className="px-5">
+        <div className="px-5 flex w-full">
+        <div>
         <iframe className="rounded-lg" width="900" height="480" src={"https://www.youtube.com/embed/"+ searchparams.get("v")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-        <h1>{title}</h1>
+        </div>
+        <div className="w-full">
+           <LiveChat/> 
+        </div>
+
         </div>
     )
 }
